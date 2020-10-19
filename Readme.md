@@ -40,13 +40,28 @@ the data snapshot.
 
 # Solution expectations
 
+The end solution should be a REST API service listening on the port `8080`
+with an endpoint which serves data in the following JSON format:
+
+```
+[
+  {
+    "t": 1603114500,
+    "v": 123.45
+  },
+  ...
+]
+```
+
+Where `t` is a unix timestamp of the hour, and `v` is the amount of fees
+being paid for transactions between **EOA** addresses within that hour in
+ETH units. This service should be added to the services list in the provided
+`docker-compose.yaml` and the solution must be able to start using
+`docker-compose up` command.
+
 You're free to choose the path and parameters for the endpoint as well as
 the service implementation language (but prefereably it should be [golang][]).
 
-The end solution should be a service with a rest api endpoint which serves
-hourly fees for transactions between **EOA** addresses.  This service should be
-added to the services list in the provided `docker-compose.yaml` and the
-solution must be able to start using `docker-compose up` command.
 
 # How to approach the challenge
 
