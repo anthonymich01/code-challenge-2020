@@ -6,8 +6,8 @@ import (
 )
 
 type GasPriceHourly struct {
-	Time int64   `json:"time"`
-	Gas  float32 `json:"gas"`
+	Time int64   `json:"t"`
+	Gas  float32 `json:"v"`
 }
 
 const GasPricesHourlyInEthQuery string = `
