@@ -5,8 +5,8 @@ The solution is to create 1 endpoint that will return sum of `gas-used` * `gas-p
 With using database provided, only given single day (07/09/2020) the query is quite simple
 
 ```c
-SELECT date_part('epoch', DATE_TRUNC('hour', t.block_time))                   as time,
-       round(sum(t.gas_used * t.gas_price / 1000000000000000000)::numeric, 2) as gas
+SELECT DATE_PART('epoch', DATE_TRUNC('hour', t.block_time))                   as time,
+       ROUND(SUM(t.gas_used * t.gas_price / 1000000000000000000)::NUMERIC, 2) as gas
 FROM transactions t
 	LEFT OUTER JOIN contracts c ON t."from" = c.address
 WHERE t."to" NOT LIKE '0x0000000000000000000000000000000000000000'
