@@ -20,4 +20,4 @@ services:
     depends_on:
       - database
     ports:
-      - "9999:8080"
+      - "8080:8080"
