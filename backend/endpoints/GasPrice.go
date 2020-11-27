@@ -11,11 +11,14 @@ type GasPriceHourly struct {
 }
 
 const GasPricesHourlyInEthQuery string = `
-SELECT date_part('epoch', DATE_TRUNC('hour', t.block_time))                   as time,
-       round(sum(t.gas_used * t.gas_price / 1000000000000000000)::numeric, 2) as gas
+SELECT DATE_PART('epoch', DATE_TRUNC('hour', t.block_time))                   as time,
+       ROUND(SUM(t.gas_used * t.gas_price / 1000000000000000000)::numeric, 2) as gas
 FROM transactions t
-	LEFT OUTER JOIN contracts c ON t."from" = c.address
-WHERE t."to" NOT LIKE '0x0000000000000000000000000000000000000000'
+	LEFT JOIN contracts cf ON t."from" = cf.address
+	LEFT JOIN contracts ct ON t."to" = ct.address
+WHERE cf.address IS NULL AND
+      ct.address IS NULL AND
+      t."to" NOT LIKE '0x0000000000000000000000000000000000000000'
 GROUP BY DATE_TRUNC('hour', t.block_time)
 ORDER BY time`
 

@@ -8,8 +8,11 @@ With using database provided, only given single day (07/09/2020) the query is qu
 SELECT DATE_PART('epoch', DATE_TRUNC('hour', t.block_time))                   as time,
        ROUND(SUM(t.gas_used * t.gas_price / 1000000000000000000)::NUMERIC, 2) as gas
 FROM transactions t
-	LEFT OUTER JOIN contracts c ON t."from" = c.address
-WHERE t."to" NOT LIKE '0x0000000000000000000000000000000000000000'
+	LEFT JOIN contracts cf ON t."from" = cf.address
+	LEFT JOIN contracts ct ON t."to" = ct.address
+WHERE cf.address IS NULL AND
+      ct.address IS NULL AND
+      t."to" NOT LIKE '0x0000000000000000000000000000000000000000'
 GROUP BY DATE_TRUNC('hour', t.block_time)
 ORDER BY time
 ```
@@ -43,12 +46,21 @@ Will return JSON format:
 ```
 [
     {
+<<<<<<< Updated upstream
         "t": 1599436800, // int
         "v": 294.21      // float
     },
     {
         "t": 1599440400, // int
         "v": 309.49      // float
+=======
+        "time": 1599436800, // int
+        "gas": 17.78        // float
+    },
+    {
+        "time": 1599440400, // int
+        "gas": 25.8         // float
+>>>>>>> Stashed changes
     },
     ...
 ]
