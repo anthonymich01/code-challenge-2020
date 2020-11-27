@@ -46,12 +46,12 @@ Will return JSON format:
 ```
 [
     {
-        "time": 1599436800, // int
-        "gas": 17.78        // float
+        "t": 1599436800, // int
+        "v": 17.78        // float
     },
     {
-        "time": 1599440400, // int
-        "gas": 25.8         // float
+        "t": 1599440400, // int
+        "v": 25.8         // float
     },
     ...
 ]
