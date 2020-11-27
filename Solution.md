@@ -46,21 +46,12 @@ Will return JSON format:
 ```
 [
     {
-<<<<<<< Updated upstream
-        "t": 1599436800, // int
-        "v": 294.21      // float
-    },
-    {
-        "t": 1599440400, // int
-        "v": 309.49      // float
-=======
         "time": 1599436800, // int
         "gas": 17.78        // float
     },
     {
         "time": 1599440400, // int
         "gas": 25.8         // float
->>>>>>> Stashed changes
     },
     ...
 ]
