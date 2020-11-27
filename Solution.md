@@ -47,11 +47,11 @@ Will return JSON format:
 [
     {
         "t": 1599436800, // int
-        "v": 17.78        // float
+        "v": 17.78       // float
     },
     {
         "t": 1599440400, // int
-        "v": 25.8         // float
+        "v": 25.8        // float
     },
     ...
 ]
